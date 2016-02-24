@@ -1,19 +1,22 @@
 $(document).ready(function() {
 
+$(function () {
+        $('#slickQuiz').slickQuiz();
+    });
 });
 
 $(window).load(function(){
 	$('.slider').fractionSlider({
-		'fullWidth': 			true,
+		'fullWidth': 			false,
 		'controls': 			true, 
 		'pager': 				true,
 		'responsive': 			true,
-		'dimensions': 			"1651,708",
+		'dimensions': 			"900,335",
 	    'increase': 			false,
-		'pauseOnHover': 		true,
+		'pauseOnHover': 		false,
 		'backgroundAnimation':  true,
-		'backgroundY': 			'-700',
+		'backgroundY': 			'-335',
 		'backgroundX': 			'0',
 	});
-
 });
+

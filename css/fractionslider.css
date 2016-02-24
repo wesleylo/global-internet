@@ -70,10 +70,12 @@
 }
 
 /** PAGER **/
-
+.fs-pager-wrapper a[rel="0"] {
+	visibility: hidden;
+}
 .fs-pager-wrapper{
 	position:absolute;
-	left:10px; bottom:10px;
+	left:-10px; bottom:10px;
 	z-index:9999;	
 }
 

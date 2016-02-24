@@ -1,33 +1,78 @@
 .background-slider{
-	background:url(../img/bkgrdtemp.jpg) left top no-repeat;
+	background:url(../img/bkgrd.png) left top repeat-x;
+}
+.slider-wrapper {
+	margin: auto;
+	margin-top: 5%;
+}
+.slider {
+	margin: auto;
+}
+.quizContainer {
+	width: 80%;
+    height: 90%;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+.quizResults {
+	visibility: hidden;
+}
+ul.answers li {
+	padding-left: 1%;
+}
+ul.answers li:hover {
+	cursor: pointer;
+}
+ul.answers, .questionCount {
+	width:100%;
+}
+.quizDescription {
+	left: 20% !important;
+	top: 40px !important;
+}
+.startQuiz {
+    margin-top: 19%;
+    margin-left: 50%;
+}
+.quizLevel {
+	margin-left: 2% !important;
+}
+.button {
+	border: 0px;
+	background-color: #558376;
 }
 h1, h2, h3, h4, h5, h6, p {
 	font-family: "Myriad Pro", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif !important;
 	color: white;
 }
 h1 {
-	font-size: 131px;
+	font-size: 64px;
 	font-weight: bold;
 	color: #f7931d;
 }
 h2 {
-	font-size: 77px;
+	font-size: 36px;
 	font-weight: bold;
 	color: #91351e;
 }
 h3 {
-	font-size: 21px !important;
+	font-size: 21px;
+	font-weight: 300;
 }
 h4 {
-	font-size: 18px !important;
+	font-size: 18px;
 	font-weight: 300;
 }
 h5 {
-	font-size: 14px !important;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 115%;
 }
 h6 {
-	font-size: 11px !important;
+	font-size: 11px;
+	font-weight: 300;
 }
 p {
-	font-size: 12px !important;
+	font-size: 12px;
+	font-weight: 300;
 }

@@ -22,7 +22,7 @@
 			// defaults & options
 			var options = $.extend({
 				'slideTransition' : 'none', // default slide transition
-				'slideTransitionSpeed' : 2000, // default slide transition
+				'slideTransitionSpeed' : 1000, // default slide transition
 				'slideEndAnimation' : true, // if set true, objects will transition out at slide end (before the slideTransition is called)
 				'position' : '0,0', // default position | should never be used
 				// 'transitionIn' : 'left', // default in - transition
@@ -141,7 +141,6 @@
 		/** ************************* **/
 
 		function init() {
-
 			// controls
 			if (options.controls) {
 				slider.append('<a href="#" class="prev"></a><a href="#" class="next" ></a>');
@@ -152,6 +151,10 @@
 
 				slider.find('.prev').bind('click', function() {
 					return prevBtnPressed();
+				});
+				
+				slider.find('.startSlides').bind('click', function() {
+					return nextBtnPressed();
 				});
 			}
 
@@ -209,7 +212,10 @@
 			if (slider.find('.fs_loader').length > 0) {
 				slider.find('.fs_loader').remove();
 			}
-
+			
+			document.getElementsByClassName("prev")[0].style.visibility = 'hidden';
+			document.getElementsByClassName("next")[0].style.visibility = 'hidden';
+			document.getElementsByClassName("fs-pager-wrapper")[0].style.visibility = 'hidden';
 			// all importent stuff is done, everybody has taken a shower, we can go
 			// starts the slider and the slide rotation
 			start();
@@ -312,10 +318,20 @@
 		};
 
 		function nextSlide() {
-			options.backgroundY = -700;
+			options.backgroundY = -335;
 			vars.lastSlide = vars.currentSlide;
 			vars.currentSlide += 1;
-
+			
+			if (vars.currentSlide == 1) {
+				document.getElementsByClassName("prev")[0].style.visibility = 'visible';
+				document.getElementsByClassName("next")[0].style.visibility = 'visible';
+				document.getElementsByClassName("fs-pager-wrapper")[0].style.visibility = 'visible';
+			}
+			
+			if (vars.currentSlide == vars.maxSlide) {
+				document.getElementsByClassName("next")[0].style.visibility = 'hidden';
+			}
+			
 			vars.stop = false;
 			vars.pause = false;
 			vars.running = true;
@@ -326,9 +342,17 @@
 		}
 
 		function prevSlide() {
-			options.backgroundY = 700;
+			options.backgroundY = 335;
 			vars.lastSlide = vars.currentSlide;
 			vars.currentSlide -= 1;
+
+			if (vars.currentSlide == 0) {
+				document.getElementsByClassName("prev")[0].style.visibility = 'hidden';
+				document.getElementsByClassName("next")[0].style.visibility = 'hidden';
+				document.getElementsByClassName("fs-pager-wrapper")[0].style.visibility = 'hidden';
+			} else if (vars.currentSlide != vars.maxSlide) {
+				document.getElementsByClassName("next")[0].style.visibility = 'visible';
+			}
 
 			vars.stop = false;
 			vars.pause = false;
@@ -342,7 +366,23 @@
 		function targetSlide(slide) {
 			vars.lastSlide = vars.currentSlide;
 			vars.currentSlide = slide;
-
+			
+			options.backgroundY = (vars.lastSlide - vars.currentSlide) * 335;
+			
+			if (vars.lastSlide == 0) {
+				document.getElementsByClassName("prev")[0].style.visibility = 'visible';
+				document.getElementsByClassName("next")[0].style.visibility = 'visible';
+				document.getElementsByClassName("fs-pager-wrapper")[0].style.visibility = 'visible';
+			} else if (vars.lastSlide == vars.maxSlide) document.getElementsByClassName("next")[0].style.visibility = 'visible';
+			
+			if (vars.currentSlide == 0) {
+				document.getElementsByClassName("prev")[0].style.visibility = 'hidden';
+				document.getElementsByClassName("next")[0].style.visibility = 'hidden';
+				document.getElementsByClassName("fs-pager-wrapper")[0].style.visibility = 'hidden';
+			} else if (vars.currentSlide == vars.maxSlide) {
+				document.getElementsByClassName("next")[0].style.visibility = 'hidden';
+			}
+			
 			vars.stop = false;
 			vars.pause = false;
 			vars.running = true;
@@ -504,7 +544,6 @@
 		function startSlide() {
 			if (options.backgroundAnimation) {
 				backgroundAnimation();
-				alert(vars.currentSlide);
 			}
 
 			if (options.pager) {
